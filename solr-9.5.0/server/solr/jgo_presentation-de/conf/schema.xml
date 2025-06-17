@@ -209,8 +209,8 @@
          Class names starting with "solr" refer to java classes in a
        standard package such as org.apache.solr.analysis
     -->
-    <field name="_text_" type="text_en" indexed="true" stored="false" multiValued="true"/>
-    <field name="highlight" type="text_en" indexed="true" stored="true" multiValued="true"/>
+    <field name="_text_" type="text_de" indexed="true" stored="false" multiValued="true"/>
+    <field name="highlight" type="text_de" indexed="true" stored="true" multiValued="true"/>
     <field name="geo" type="location" indexed="true" stored="true"/>
 
     <field name="suggest" type="text_suggest" indexed="true" stored="true" />
@@ -218,10 +218,10 @@
       <analyzer>
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_en.txt" format="snowball" />
-        <!-- maybe add from <fieldType name="text_en".. />
-        <filter class="solr.EnglishPossessiveFilterFactory"/>
-        -->
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_de.txt" format="snowball" />
+        <!-- we don't want
+        <filter class="solr.GermanNormalizationFilterFactory"/>
+        for suggests since that removes umlauts: https://stackoverflow.com/a/42003752/2114681 -->
       </analyzer>
     </fieldType>
 
@@ -573,7 +573,7 @@
     <fieldType name="point" class="solr.PointType" dimension="2" subFieldSuffix="_d"/>
 
     <!-- A specialized field for geospatial search. If indexed, this fieldType must not be multivalued. -->
-    <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+    <fieldType name="location" class="solr.LatLonPointSpatialField" docValues="true"/>
 
     <!-- An alternative geospatial field type new to Solr 4.  It supports multiValued and polygon shapes.
       For more information about this and other Spatial fields new to Solr 4, see:
