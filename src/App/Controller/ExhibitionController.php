@@ -45,9 +45,13 @@ extends \TeiEditionBundle\Controller\BaseController
         'emigracao-america-do-sul' => [
             'name' => 'Jewish emigration to South America - A new home Brazil, Argentina and Uruguay',
         ],
-       'persian-jews' => [
-           'name' => 'Persian Jews in Hamburg',
-       ]
+        'iranian-jews' => [
+            'name' => 'The Iranian-Jewish community in Hamburg',
+        ],
+        'object-history' => [
+            'name' => 'Object (hi)stories',
+            'published' => false,
+        ],
         /*
         'preview' => [
             'name' => 'New Exhibition',
