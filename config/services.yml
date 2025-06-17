@@ -52,6 +52,11 @@ services:
                 password: '%database.password%'
                 driver:  pdo_mysql
                 charset:  '%database.charset%' # UTF8
+                # TODO: Switch collate from utf8mb4_unicode
+                # to utf8mb4_unicode_520_ci
+                #   or (once we are on MySQL 8 everywhere)
+                # utf8mb4_0900_ai_ci
+                # see https://www.coderedcorp.com/blog/guide-to-mysql-charsets-collations/
                 options:
                         1002: "SET NAMES '%database.charset%' COLLATE '%database.charset%_unicode_ci'"
                 default_table_options:
@@ -85,9 +90,14 @@ services:
     TeiEditionBundle\Utils\ImageMagick\ImageMagickProcessor:
         arguments:    [ "%app.imagemagick.processor.arguments%" ]
         
-    app.xslt_adapter:
+    app.xslt_adapter_inner:
         class:        "%app.xslt.adapter.class%"
         arguments:    [ "%app.xslt.adapter.arguments%" ]
+    # wrap adapter with cache
+    app.xslt_adapter:
+        class:      TeiEditionBundle\Utils\Xsl\XsltCacheAdapter
+        arguments:    [ '@app.xslt_adapter_inner', '@xslt_cache_pool' ]
+
     TeiEditionBundle\Utils\Xsl\XsltProcessor:
         calls:
             - [ setAdapter, [ '@app.xslt_adapter' ]]

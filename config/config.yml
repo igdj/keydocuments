@@ -20,6 +20,11 @@ framework:
         utf8: true
     mailer:
         dsn: '%mailer.dsn%'
+    cache:
+        pools:
+            xslt_cache_pool:
+                adapter: cache.adapter.filesystem
+                default_lifetime: 2592000 # 30 days
 
 twig:
     globals:
