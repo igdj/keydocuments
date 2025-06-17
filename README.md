@@ -1,5 +1,5 @@
-Web-site http://jewish-history-online.net/
-==========================================
+Web-site https://keydocuments.net/
+==================================
 
 This is the code base for the presentation of the site. The generic parts
 are factored out into a Symfony bundle:
@@ -11,7 +11,7 @@ including step-by-step setup instructions at
 
 You may use or adjust code from this project if it fits your needs.
 If you have any questions or find this code helpful, please contact us at
-    http://jewish-history-online.net/contact
+    https://keydocuments.net/contact
 
 Installation Notes
 ------------------
@@ -19,12 +19,12 @@ Requirements
 - PHP >= 7.3 (check with `php -v`)
 - composer (check with `composer -v`; if it is missing, see https://getcomposer.org/)
 - MySQL or MariaDB (for metadata storage)
-- Java 1.8 (for XSLT and Solr, check with `java -version`)
+- Java 1.11 (for XSLT and Solr, check with `java -version`)
 - `convert` (for image tiles, check with `which convert`; if it is missing, install e.g. with `sudo apt-get install imagemagick`)
 
 In a fitting directory (e.g. `/var/www`), clone the project
 
-    git clone https://github.com/igdj/jewish-history-online.git presentation
+    git clone https://github.com/igdj/keydocuments.git presentation
 
 If you don't have `git` installed, you can also download the project as ZIP-file
 and extract it manually.
@@ -86,7 +86,7 @@ line in `parameters.yml`:
 
 On Windows, it might look like
 
-    app.xslt.adapter.arguments: "c:\\Run\\Java\\jdk1.8\\bin\\java -jar %kernel.project_dir%\\bin\\saxon9he.jar -s:%%source%% -xsl:%%xsl%% %%additional%%"
+    app.xslt.adapter.arguments: "c:\\Run\\Java\\jdk1.11\\bin\\java -jar %kernel.project_dir%\\bin\\saxon9he.jar -s:%%source%% -xsl:%%xsl%% %%additional%%"
 
 depending on your local Java installation.
 
@@ -96,18 +96,18 @@ search field should still work.
 
 First, download
 
-    https://archive.apache.org/dist/lucene/solr/6.2.0/solr-6.2.0.zip
+    https://archive.apache.org/dist/solr/solr/9.5.0/solr-9.5.0.tgz
 
-and extract the contents of `solr-6.2.0` into the existing `solr/` folder.
+and extract the contents of `solr-9.5.0.tgz` into the existing `solr-9.5.0/` folder.
 
 Start solr by
 
-    ./solr/bin/solr start
+    ./solr-9.5.0/bin/solr start
 
 and then create the `jgo_presentation-de` and `jgo-presentation_de` cores
 
-    ./solr/bin/solr create -c jgo_presentation-de
-    ./solr/bin/solr create -c jgo_presentation-en
+    ./solr-9.5.0/bin/solr create -c jgo_presentation-de
+    ./solr-9.5.0/bin/solr create -c jgo_presentation-en
 
 You can clear the core and re-index existing entities
 
@@ -126,7 +126,7 @@ For trouble-shooting, you can access the Solr admin interface at
 
 To stop it again, call
 
-    ./solr/bin/solr stop -all
+    ./solr-9.5.0/bin/solr stop -all
 
 ### Setup Web-Server
 For testing purposes, you can use the built-in server from PHP
@@ -158,8 +158,6 @@ described in https://symfony.com/doc/3.4/setup/file_permissions.html
 - sudo setfacl -R -m u:www-data:rwX /path/to/web/css
 - sudo setfacl -dR -m u:www-data:rwX /path/to/web/css
 
-    ./bin/console doctrine:schema:create
-
 Development Notes
 -----------------
 Translate messages and routes according to settings in
@@ -180,7 +178,7 @@ License
     Code for the presentation of the Digital Source Edition
         Key Documents of German-Jewish History
 
-    (C) 2017-2024 Institut für die Geschichte der deutschen Juden,
+    (C) 2017-2025 Institut für die Geschichte der deutschen Juden,
         Daniel Burckhardt
 
 
