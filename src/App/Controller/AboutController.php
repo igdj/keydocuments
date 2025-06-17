@@ -207,6 +207,11 @@ extends \TeiEditionBundle\Controller\RenderTeiController
      */
     protected function sendMessage(MailerInterface $mailer, \Twig\Environment $twig, $data)
     {
+        // simple black-list
+        if (in_array($data['email'], [ 'testing@example.com' ])) {
+            return false;
+        }
+
         $template = $twig->load('About/contact.email.twig');
 
         $subject = $template->renderBlock('subject', [ 'data' => $data ]);
