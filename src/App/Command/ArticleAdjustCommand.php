@@ -323,12 +323,19 @@ extends BaseCommand
                 if (!empty($result['place_identifier'])) {
                     $place = $this->findPlaceByUri($result['place_identifier']);
                     if (is_null($place)) {
-                        die('TODO: get info for ' . $result['place_identifier']);
+                        // TODO: lookup info for $result['place_identifier']);
+                        $bibl['placeName'] = [
+                            '@ref' => $result['place_identifier'],
+                            '@value' => $result['place'],
+                        ];
                     }
-                    $bibl['placeName'] = [
-                        '@ref' => $result['place_identifier'],
-                        '@value' => $place->getNameLocalized($locale),
-                    ];
+                    else {
+                        $bibl['placeName'] = [
+                            '@ref' => $result['place_identifier'],
+                            '@value' => $place->getNameLocalized($locale),
+                        ];
+                    }
+
                     if (!empty($result['place_geo'])) {
                         $bibl['placeName']['@corresp'] = '#' . trim($result['place_geo']);
                     }
