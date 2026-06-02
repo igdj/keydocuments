@@ -524,7 +524,7 @@ extends BaseCommand
             }
             else {
                 $res = $this->formatter->formatXML($xmlAsString);
-                if (is_string($res)) {
+                if (is_string($res) && '' !== trim($res)) {
                     $xmlAsString = $res;
                 }
             }
