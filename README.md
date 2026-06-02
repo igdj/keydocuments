@@ -16,7 +16,7 @@ If you have any questions or find this code helpful, please contact us at
 Installation Notes
 ------------------
 Requirements
-- PHP >= 7.3 (check with `php -v`)
+- PHP >= 8.1 (check with `php -v`)
 - composer (check with `composer -v`; if it is missing, see https://getcomposer.org/)
 - MySQL or MariaDB (for metadata storage)
 - Java 1.11 (for XSLT and Solr, check with `java -version`)
@@ -178,7 +178,7 @@ License
     Code for the presentation of the Digital Source Edition
         Key Documents of German-Jewish History
 
-    (C) 2017-2025 Institut für die Geschichte der deutschen Juden,
+    (C) 2017-2026 Institut für die Geschichte der deutschen Juden,
         Daniel Burckhardt
 
 
