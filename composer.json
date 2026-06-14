@@ -53,7 +53,7 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.1",
+        "php": "^8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
@@ -120,8 +120,7 @@
 
         "igdj/tei-edition-bundle": "dev-master",
 
-        "vnn/wordpress-rest-api-client": "dev-master",
-        "guzzlehttp/guzzle": "^6.5"
+        "vnn/wordpress-rest-api-client": "dev-master"
     },
     "conflict": {
         "cocur/slugify": "4.5.0"
